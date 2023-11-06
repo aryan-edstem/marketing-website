@@ -7,9 +7,9 @@ const SignUpPage = () => {
     const navigate = useNavigate();
     const [savedId, setSavedId] = useState('')
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    email: '',
+    username: "",
+    password: "",
+    email: "",
   });
 
   const [errors, setErrors] = useState({
@@ -42,9 +42,9 @@ const SignUpPage = () => {
 
     if (Object.keys(newErrors).length === 0) {
         axios
-      .post('http://localhost:5500/submit',formData)
+      .post('http://localhost:8080/signup',formData)
       .then((response) => {
-        console.log(response.data.id)
+        console.log(response)
         setSavedId(response.data.id)
       });
       navigate("/home");
