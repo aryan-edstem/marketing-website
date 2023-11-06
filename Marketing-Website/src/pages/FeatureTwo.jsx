@@ -2,11 +2,12 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import {Link} from "react-router-dom"
 
-const FeatureTwo= () => {
+const FeatureTwo= (props) => {
+
     return(
         <div className="bg-gray-100">
             <Navbar />
-                <h1> Feature <b>Two</b></h1>
+                <h1> Feature <b>{number}</b></h1>
                 <Link to="/Contact">
                     <button  className="absolute top-[400px] right-[800px] bg-green-800 rounded p-5 z-10 text-slate-50">Contact Us</button>
                 </Link>
