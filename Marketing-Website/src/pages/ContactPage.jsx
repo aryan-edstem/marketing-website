@@ -1,20 +1,23 @@
 import React,{useState} from "react";
 import Navbar from "../components/Navbar";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 
 const ContactPage = () => {
     const navigate=useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    email: '',
+    first_name: "",
+    password: "",
+    email: "",
+    requirement:""
   });
 
   const [errors, setErrors] = useState({
-    username: '',
-    password: '',
-    email: '',
+    first_name: "",
+    password: "",
+    email: "",
+    requirement:""
   });
 
   const handleChange = (e) => {
@@ -28,8 +31,8 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
-    if (!formData.username) {
-      newErrors.username = 'Username is required';
+    if (!formData.first_name) {
+      newErrors.first_name = 'First Name is required';
     }
     if (!formData.password) {
       newErrors.password = 'Password is required';
@@ -37,10 +40,17 @@ const ContactPage = () => {
     if (!formData.email) {
       newErrors.email = 'Email is required';
     }
+    if (!formData.requirement) {
+        newErrors.requirement = 'Please Specify Your Requirement';
+      }
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Submit the form or perform other actions
+        axios.post('http://localhost:8080/contact',formData)
+        .then((response) => {
+          console.log(response)
+          setSavedId(response.data.id)
+        });
       navigate('/home')
       console.log('Form submitted:', formData);
     }
@@ -55,13 +65,13 @@ const ContactPage = () => {
             <label name="username" className="block text-gray-700">Username</label>
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              id="first_name"
+              name="first_name"
+              value={formData.first_name}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
-            {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
+            {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>}
           </div>
           <div className="mb-4">
             <label name="email" className="block text-gray-700">Email</label>
@@ -90,16 +100,16 @@ const ContactPage = () => {
           </div>
 
           <div className="mb-4 flex flex-col justify-center">
-            <label name="requirements" className="block text-gray-700">Requirements</label>
+            <label name="requirement" className="block text-gray-700">Requirements</label>
             <textarea
-              id="requirements"
-              name="requirements"
-              value={formData.requirements}
+              id="requirement"
+              name="requirement"
+              value={formData.requirement}
               onChange={handleChange}
               className="w-96 h-20 px-3 py-2 border rounded-md"
               rows="5"
             />
-            {errors.requirements && <p className="text-red-500 text-sm mt-1">{errors.requirements}</p>}
+            {errors.requirement && <p className="text-red-500 text-sm mt-1">{errors.requirement}</p>}
           </div>
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
             Contact Us
