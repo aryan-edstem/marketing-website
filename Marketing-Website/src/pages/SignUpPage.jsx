@@ -1,55 +1,53 @@
-import React,{useState} from "react";
-import Navbar from "../components/Navbar";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
-
-const SignUpPage = () => {
+  import React, { useState } from 'react';
+  import { useDispatch } from 'react-redux';
+  import { signUp } from '../actions/authActions';
+  import {useNavigate} from "react-router-dom";
+  import Navbar from '../components/Navbar';
+  
+  const SignUpPage = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [savedId, setSavedId] = useState('')
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    email: "",
-  });
-
-  const [errors, setErrors] = useState({
-    username: '',
-    password: '',
-    email: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+  
+    const [formData, setFormData] = useState({
+      username: '',
+      password: '',
+      email: '',
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {};
-    if (!formData.username) {
-      newErrors.username = 'Username is required';
-    }
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    }
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    }
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-        axios
-      .post('http://localhost:8080/signup',formData)
-      .then((response) => {
-        console.log(response)
-        setSavedId(response.data.id)
+  
+    const [errors, setErrors] = useState({
+      username: '',
+      password: '',
+      email: '',
+    });
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
       });
-      navigate("/home");
-    }
-  };
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const newErrors = {};
+  
+      if (!formData.username) {
+        newErrors.username = 'Username is required';
+      }
+      if (!formData.password) {
+        newErrors.password = 'Password is required';
+      }
+      if (!formData.email) {
+        newErrors.email = 'Email is required';
+      }
+      setErrors(newErrors);
+  
+      if (Object.keys(newErrors).length === 0) {
+        dispatch(signUp(formData, navigate));
+      }
+    };
+  
     return(
         <div className="bg-gray-100">
             <Navbar />

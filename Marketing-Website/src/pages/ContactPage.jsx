@@ -1,23 +1,25 @@
-import React,{useState} from "react";
-import Navbar from "../components/Navbar";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
-
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createContact } from '../actions/contactActions';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const ContactPage = () => {
-    const navigate=useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    first_name: "",
-    password: "",
-    email: "",
-    requirement:""
+    full_name: '',
+    password: '',
+    email: '',
+    requirement: '',
   });
 
   const [errors, setErrors] = useState({
-    first_name: "",
-    password: "",
-    email: "",
-    requirement:""
+    full_name: '',
+    password: '',
+    email: '',
+    requirement: '',
   });
 
   const handleChange = (e) => {
@@ -29,10 +31,11 @@ const ContactPage = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const newErrors = {};
-    if (!formData.first_name) {
-      newErrors.first_name = 'First Name is required';
+
+    if (!formData.full_name) {
+      newErrors.full_name = 'Name is required';
     }
     if (!formData.password) {
       newErrors.password = 'Password is required';
@@ -41,20 +44,16 @@ const ContactPage = () => {
       newErrors.email = 'Email is required';
     }
     if (!formData.requirement) {
-        newErrors.requirement = 'Please Specify Your Requirement';
-      }
+      newErrors.requirement = 'Please Specify Your Requirement';
+    }
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-        axios.post('http://localhost:8080/contact',formData)
-        .then((response) => {
-          console.log(response)
-          setSavedId(response.data.id)
-        });
-      navigate('/home')
-      console.log('Form submitted:', formData);
+      dispatch(createContact(formData)); // Dispatch the Redux action
+      navigate('/home');
     }
   };
+
     return(
         <div className="bg-gray-100">
             <Navbar />
@@ -62,16 +61,16 @@ const ContactPage = () => {
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
             <form onSubmit={handleSubmit}>
           <div className="mb-4 flex flex-col justify-center">
-            <label name="username" className="block text-gray-700">Username</label>
+            <label name="username" className="block text-gray-700">Full Name</label>
             <input
               type="text"
-              id="first_name"
-              name="first_name"
+              id="full_name"
+              name="full_name"
               value={formData.first_name}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
-            {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>}
+            {errors.full_name && <p className="text-red-500 text-sm mt-1">{errors.full_name}</p>}
           </div>
           <div className="mb-4">
             <label name="email" className="block text-gray-700">Email</label>
