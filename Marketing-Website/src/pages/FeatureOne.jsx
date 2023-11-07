@@ -3,8 +3,10 @@ import Navbar from "../components/Navbar";
 import {Link} from "react-router-dom"
 
 
+
 const FeatureOne= (props) => {
     const {number} = props;
+
     return(
         <div className="bg-gray-100">
             <Navbar />

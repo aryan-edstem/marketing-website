@@ -3,6 +3,7 @@
   import { signUp } from '../actions/authActions';
   import {useNavigate} from "react-router-dom";
   import Navbar from '../components/Navbar';
+  import { storeUsername } from '../actions/userAction';
   
   const SignUpPage = () => {
     const dispatch = useDispatch();
@@ -45,6 +46,7 @@
   
       if (Object.keys(newErrors).length === 0) {
         dispatch(signUp(formData, navigate));
+        dispatch(storeUsername(formData.username));
       }
     };
   

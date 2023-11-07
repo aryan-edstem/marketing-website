@@ -1,10 +1,11 @@
 import React from "react";
 import Logo from '../assets/logo.svg';
 import {Link} from 'react-router-dom'
-
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
+    const username = useSelector((state) => state.user.username);
     return(
         <div>
             <div className="h-20 bg-gray-800 flex justify-between content-center p-5">
@@ -18,6 +19,9 @@ const Navbar = () => {
                     <Link to="/home">
                         <h1 className="text-slate-100">Home</h1>
                     </Link>
+                    <div>
+                        <h1 className="text-slate-100">{username}</h1>
+                    </div>
                 </div>
             </div>
         </div>
