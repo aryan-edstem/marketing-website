@@ -9,17 +9,17 @@ const ContactPage = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    full_name: '',
-    password: '',
+    first_name: "",
     email: '',
     requirement: '',
+    phone_no:''
   });
 
   const [errors, setErrors] = useState({
-    full_name: '',
-    password: '',
+    first_name: '',
     email: '',
     requirement: '',
+    phone_no:''
   });
 
   const handleChange = (e) => {
@@ -34,11 +34,8 @@ const ContactPage = () => {
     // e.preventDefault();
     const newErrors = {};
 
-    if (!formData.full_name) {
-      newErrors.full_name = 'Name is required';
-    }
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
+    if (!formData.first_name) {
+      newErrors.first_name = 'Name is required';
     }
     if (!formData.email) {
       newErrors.email = 'Email is required';
@@ -49,7 +46,7 @@ const ContactPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      dispatch(createContact(formData)); // Dispatch the Redux action
+      dispatch(createContact(formData)); 
       navigate('/home');
     }
   };
@@ -61,16 +58,16 @@ const ContactPage = () => {
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
             <form onSubmit={handleSubmit}>
           <div className="mb-4 flex flex-col justify-center">
-            <label name="username" className="block text-gray-700">Full Name</label>
+            <label name="first_name" className="block text-gray-700">Full Name</label>
             <input
               type="text"
-              id="full_name"
-              name="full_name"
+              id="first_name"
+              name="first_name"
               value={formData.first_name}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
-            {errors.full_name && <p className="text-red-500 text-sm mt-1">{errors.full_name}</p>}
+            {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>}
           </div>
           <div className="mb-4">
             <label name="email" className="block text-gray-700">Email</label>
@@ -86,16 +83,16 @@ const ContactPage = () => {
           </div>
 
           <div className="mb-4">
-            <label name="password" className="block text-gray-700">Password</label>
+            <label name="phone_no" className="block text-gray-700">Phone No</label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
+              type="number"
+              id="phone_no"
+              name="phone_no"
+              value={formData.phone_no}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
-            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+            {errors.phone_no && <p className="text-red-500 text-sm mt-1">{errors.phone_no}</p>}
           </div>
 
           <div className="mb-4 flex flex-col justify-center">
