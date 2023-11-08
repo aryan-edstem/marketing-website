@@ -2,7 +2,6 @@
   import { useDispatch } from 'react-redux';
   import { signUp } from '../actions/authActions';
   import {useNavigate} from "react-router-dom";
-  import Navbar from '../components/Navbar';
   import { storeUsername } from '../actions/userAction';
   
   const SignUpPage = () => {
@@ -51,8 +50,7 @@
     };
   
     return(
-        <div className="bg-gray-100">
-            <Navbar />
+        <div className="bg-gray-100 ">
             <div className="h-auto flex items-center justify-center mt-10">
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
             <form onSubmit={handleSubmit}>

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createContact } from '../actions/contactActions';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+
+
 
 const ContactPage = () => {
   const dispatch = useDispatch();
@@ -47,13 +48,12 @@ const ContactPage = () => {
 
     if (Object.keys(newErrors).length === 0) {
       dispatch(createContact(formData)); 
-      navigate('/home');
+      navigate('/success');
     }
   };
 
     return(
         <div className="bg-gray-100">
-            <Navbar />
             <div className="h-auto flex items-center justify-center mt-10">
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
             <form onSubmit={handleSubmit}>
@@ -113,6 +113,7 @@ const ContactPage = () => {
         </form>
              </div>
             </div>
+
         </div>
     )
 }
