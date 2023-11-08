@@ -52,9 +52,9 @@ const HomePage = () => {
             </div>
             <div className="relative">
                 <img src={HomePanel} className="w-[1440px] mx-auto z-0 mt-16 rounded-3xl opacity-50 relative" />
-                <h1 className="absolute top-[200px] right-[700px] text-center font-roboto text-4xl font-bold leading-[72.648px] ">Residential Solar </h1>
+                <h1 className="absolute top-[200px] right-[600px] text-center font-roboto text-6xl font-medium leading-[72.648px] ">Residential Solar </h1>
                 <Link to="/Contact">
-                    <button  className="absolute bottom-40 right-[800px] bg-green-800 rounded-lg p-5 z-10 text-slate-50">Contact Us</button>
+                    <button  className="absolute bottom-40 right-[800px] bg-green-500 rounded-lg p-5 z-10 text-white font-bold ">Contact Us</button>
                 </Link>
                 <div className="flex gap-5 absolute -bottom-32 right-64">
                     <img src={HomePanelS1} className="w-[285px] h-230px border-4 border-solid border-blue-500 bg-cover bg-no-repeat shadow-md hover:scale-125" />
@@ -69,19 +69,19 @@ const HomePage = () => {
 
 
                 <div className="text-center justify-center flex gap-10 mb-48 mt-40 p-8 font-roboto text-2xl font-medium">
-                    <div className="w-64 h-64 p-8 border rounded-3xl shadow-lg hover:scale-110 " data-value="one" onClick={handlePage}>
+                    <div className="w-64 h-64 p-8 border rounded-3xl shadow-lg hover:scale-110 cursor-pointer hover:pointer" data-value="one" onClick={handlePage}>
                      Reduce your electricity bills
                     </div>
-                    <div className="w-64 h-64 p-8 border rounded-3xl shadow-lg hover:scale-110"  data-value="two" onClick={handlePage}>
+                    <div className="w-64 h-64 p-8 border rounded-3xl shadow-lg hover:scale-110 cursor-pointer hover:pointer"  data-value="two" onClick={handlePage}>
                         Cleaner future for next generations
                     </div>
-                    <div className="w-64 h-64 p-8 border   rounded-3xl shadow-lg hover:scale-110"  data-value="three" onClick={handlePage}>
+                    <div className="w-64 h-64 p-8 border   rounded-3xl shadow-lg hover:scale-110 cursor-pointer hover:pointer"  data-value="three" onClick={handlePage}>
                         Reduce your carbon footprints
                     </div>
                 </div>
             <br />
             <Link to="/Contact">
-                    <button  className="absolute  bottom-20 right-[800px] bg-green-800 rounded-lg p-5 z-10 text-slate-50">Get a free quote</button>
+                    <button  className="absolute  bottom-20 right-[800px] bg-green-500 rounded-lg p-5 z-10 font-bold text-white">Get a free quote</button>
             </Link>
             <Footer />
         </div>

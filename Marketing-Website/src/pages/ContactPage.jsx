@@ -9,8 +9,8 @@ const ContactPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    first_name: "",
+  const [contactData, setContactData] = useState({
+    first_name: '',
     email: '',
     requirement: '',
     phone_no:''
@@ -25,30 +25,29 @@ const ContactPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setContactData({
+      ...contactData,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const newErrors = {};
 
-    if (!formData.first_name) {
+    if (!contactData.first_name) {
       newErrors.first_name = 'Name is required';
     }
-    if (!formData.email) {
+    if (!contactData.email) {
       newErrors.email = 'Email is required';
     }
-    if (!formData.requirement) {
+    if (!contactData.requirement) {
       newErrors.requirement = 'Please Specify Your Requirement';
     }
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      dispatch(createContact(formData)); 
-      navigate('/success');
+      dispatch(createContact(contactData,navigate)); 
     }
   };
 
@@ -56,14 +55,14 @@ const ContactPage = () => {
         <div className="bg-gray-100">
             <div className="h-auto flex items-center justify-center mt-10">
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
-            <form onSubmit={handleSubmit}>
+            <form>
           <div className="mb-4 flex flex-col justify-center">
             <label name="first_name" className="block text-gray-700">Full Name</label>
             <input
               type="text"
-              id="first_name"
+              id="firstName"
               name="first_name"
-              value={formData.first_name}
+              value={contactData.first_name}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
@@ -75,7 +74,7 @@ const ContactPage = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={contactData.email}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
@@ -88,7 +87,7 @@ const ContactPage = () => {
               type="number"
               id="phone_no"
               name="phone_no"
-              value={formData.phone_no}
+              value={contactData.phone_no}
               onChange={handleChange}
               className="w-96 px-3 py-2 border rounded-md"
             />
@@ -100,14 +99,14 @@ const ContactPage = () => {
             <textarea
               id="requirement"
               name="requirement"
-              value={formData.requirement}
+              value={contactData.requirement}
               onChange={handleChange}
               className="w-96 h-20 px-3 py-2 border rounded-md"
               rows="5"
             />
             {errors.requirement && <p className="text-red-500 text-sm mt-1">{errors.requirement}</p>}
           </div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
+          <button type="submit" onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded-md">
             Contact Us
           </button>
         </form>

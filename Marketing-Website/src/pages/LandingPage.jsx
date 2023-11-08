@@ -27,7 +27,7 @@ const LandingPage = () => {
 
             </div>
             <Link to="/Sign-up">
-                    <button  className="absolute  -bottom-40 right-[800px] bg-green-800 rounded-lg p-5 z-10 text-slate-50">Sign Up</button>
+                    <button  className="absolute  -bottom-40 right-[800px] bg-green-500 rounded-lg p-5 z-10 text-slate-50 text-white font-bold">Sign Up</button>
             </Link>
             <Footer />
 
