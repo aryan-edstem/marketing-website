@@ -25,7 +25,7 @@ const FeatureOne= (props) => {
                 <Link to="/Contact">
                     <button  className=" bg-green-800 rounded p-5 z-10 text-slate-50">Contact Us</button>
                 </Link>
-                
+                <button  className="ml-48 text-center bg-green-800 w-20 rounded p-5 text-slate-50" onClick={() => window.location.reload()}>Back</button>
             </div>
         </div>
     )
