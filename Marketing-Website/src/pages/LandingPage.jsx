@@ -1,6 +1,5 @@
 import React from "react";
 import solar from '../assets/solar.jpg'
-import Navbar from "../components/Navbar";
 import {Link} from "react-router-dom"
 import Footer from "../components/Footer";
 import ellipse from "../assets/Ellipse5.png"

@@ -26,19 +26,19 @@ const HomePage = () => {
     
     {if(page==='one'){
         return(
-            <FeatureOne head="Reduce your electricity bills" />
+            <FeatureOne head="Reduce your electricity bills" id="5"/>
         )
     }
     
     else if(page==='two'){
         return(
-            <FeatureOne head="Cleaner future for next generations" />
+            <FeatureOne head="Cleaner future for next generations" id="6" />
         )
     }
 
     else if(page==='three'){
         return(
-            <FeatureOne head="Reduce your carbon footprints" />
+            <FeatureOne head="Reduce your carbon footprints" id="7"/>
         )
     }
 
