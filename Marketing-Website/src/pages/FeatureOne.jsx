@@ -2,23 +2,20 @@ import axios from "axios";
 import React from "react";
 import {Link} from "react-router-dom"
 import { useEffect,useState } from "react";
+import { useDispatch ,useSelector} from "react-redux";
+import { fetchData } from "../actions/featureAction";
 
 
 
 const FeatureOne= (props) => {
     const {head,id} = props;
-    const [feature, setFeature] = useState()
+    const dispatch = useDispatch();
     useEffect(() => {
-        axios.get(`http://localhost:8080/description/detailed/${id}`)
-        .then(response => {      
-          console.log(response.data);
-          setFeature(response.data)
-        })    
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }, [])
+        dispatch(fetchData(id));
+      },[]);
     
+    const feature = useSelector((state) => state.data.data); 
+
     if(feature){
         return(
         <div className="bg-gray-100">

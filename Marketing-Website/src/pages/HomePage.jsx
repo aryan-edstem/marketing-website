@@ -20,7 +20,6 @@ const HomePage = () => {
     const username = useSelector((state) => state.user.username);
     const handlePage = (e) =>{
         setPage(e.target.getAttribute('data-value'));
-        console.log(e)
     }
     
     
