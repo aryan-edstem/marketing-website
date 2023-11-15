@@ -4,6 +4,7 @@
   import {useNavigate} from "react-router-dom";
   import { storeUsername } from '../actions/userAction';
   
+  
   const SignUpPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();

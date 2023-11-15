@@ -6,7 +6,6 @@ import NoPage from './pages/NoPage';
 import SignUpPage from './pages/SignUpPage';
 import FeatureOne from './pages/FeatureOne';
 import ContactPage from './pages/ContactPage';
-import './App.css'
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Success from './pages/Succes';

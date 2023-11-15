@@ -1,6 +1,4 @@
 import React from "react";
-import solar from '../assets/solar.jpg'
-import Navbar from "../components/Navbar";
 import FeatureOne from "./FeatureOne";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -82,7 +80,7 @@ const HomePage = () => {
             <Link to="/Contact">
                     <button  className="absolute  bottom-20 right-[800px] bg-green-500 rounded-lg p-5 z-10 font-bold text-white">Get a free quote</button>
             </Link>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

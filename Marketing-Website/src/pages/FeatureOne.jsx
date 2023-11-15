@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import {Link} from "react-router-dom"
 import { useEffect,useState } from "react";
@@ -10,6 +9,7 @@ import { fetchData } from "../actions/featureAction";
 const FeatureOne= (props) => {
     const {head,id} = props;
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(fetchData(id));
       },[]);
