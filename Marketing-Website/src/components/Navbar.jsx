@@ -23,7 +23,7 @@ const Navbar = () => {
                 <Menu as="div" className="relative inline-block text-left">
               <div>
                 <div className="flex gap-20 justify-center  mr-20">
-                    <Link to="/home">
+                    <Link to="/">
                         <h1 className="text-slate-100">Home</h1>
                     </Link>
                     <Menu.Button onClick={() => setActiveMenu(activeMenu === 'products' ? null : 'products')} className="text-slate-100">
@@ -33,10 +33,10 @@ const Navbar = () => {
                     Services
                     </Menu.Button>
                     <Link to="/contact">
-                        <h1 className="text-slate-100 ">Contact Us</h1>
+                        <h1 className="text-slate-100 ">Request Quotation</h1>
                     </Link>
                     <div>
-                        <h1 className="text-slate-100">{username}</h1>
+                        <h1 className="text-slate-100">Hi, {username}</h1>
                     </div>
                 </div>
               </div>

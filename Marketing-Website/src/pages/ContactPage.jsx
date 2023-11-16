@@ -47,13 +47,14 @@ const ContactPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      dispatch(createContact(contactData,navigate)); 
+      dispatch(createContact(contactData,navigate));
+      dispatch 
     }
   };
 
     return(
-        <div className="bg-gray-100">
-            <div className="h-auto flex items-center justify-center mt-10">
+        <div className="bg-gray-100 h-screen pt-10">
+            <div className="h-auto flex items-center justify-center">
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
             <form>
           <div className="mb-4 flex flex-col justify-center">
@@ -84,7 +85,7 @@ const ContactPage = () => {
           <div className="mb-4">
             <label name="phone_no" className="block text-gray-700">Phone No</label>
             <input
-              type="number"
+              type="tel"
               id="phone_no"
               name="phone_no"
               value={contactData.phone_no}

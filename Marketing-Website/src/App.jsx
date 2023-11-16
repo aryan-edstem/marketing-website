@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as  Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import HomePage from './pages/HomePage';
+// import HomePage from './pages/HomePage';
 import NoPage from './pages/NoPage';
 import SignUpPage from './pages/SignUpPage';
 import FeatureOne from './pages/FeatureOne';
@@ -17,9 +17,12 @@ const App = () => {
       <Navbar/>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="home" element={<HomePage />} />
+        {/* <Route path="home" element={<HomePage />} /> */}
         <Route path="Sign-up" element={<SignUpPage />} />
         <Route path="Feature-one" element={<FeatureOne />} />
+        <Route path="1" element={<FeatureOne head="Reduce your electricity bills" id="1"/>} />
+        <Route path="2" element={<FeatureOne head="Reduce your electricity bills" id="2"/>} />
+        <Route path="3" element={<FeatureOne head="Reduce your electricity bills" id="3"/>} />
         <Route path='Contact' element={<ContactPage />} />
         <Route path='success' element={<Success />} />
         <Route path="*" element={<NoPage />} />

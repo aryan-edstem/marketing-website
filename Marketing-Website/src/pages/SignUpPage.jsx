@@ -3,11 +3,13 @@
   import { signUp } from '../actions/authActions';
   import {useNavigate} from "react-router-dom";
   import { storeUsername } from '../actions/userAction';
+  import LoginPage from './LoginPage';
   
   
   const SignUpPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [login, setLogin] = useState(false)
   
     const [formData, setFormData] = useState({
       username: '',
@@ -28,7 +30,17 @@
         [name]: value,
       });
     };
-  
+
+    const handleLogin = () => {
+        setLogin(true);
+    }
+    
+    if(login){
+      return(
+        <LoginPage/>
+      )
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault();
       const newErrors = {};
@@ -51,7 +63,7 @@
     };
   
     return(
-        <div className="bg-gray-100 ">
+        <div className="bg-gray-100 h-screen p-10 ">
             <div className="h-auto flex items-center justify-center mt-10">
                 <div className="bg-white p-8 rounded-3xl shadow-md w-[500px]">
             <form onSubmit={handleSubmit}>
@@ -97,6 +109,7 @@
           </button>
           {/* </Link> */}
         </form>
+            <button className='text-rose-500 text-decoration-line: underline' onClick={handleLogin}>Already a customer? please login</button >
              </div>
             </div>
         </div>
