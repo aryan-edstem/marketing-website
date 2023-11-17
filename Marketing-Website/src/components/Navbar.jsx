@@ -26,6 +26,9 @@ const Navbar = () => {
                     <Link to="/">
                         <h1 className="text-slate-100">Home</h1>
                     </Link>
+                    <Link to="products">
+                        <h1 className="text-slate-100">products</h1>
+                    </Link>
                     <Menu.Button onClick={() => setActiveMenu(activeMenu === 'products' ? null : 'products')} className="text-slate-100">
                     Products
                     </Menu.Button>
@@ -148,7 +151,7 @@ const Navbar = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-60 z-40 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-80 z-40 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import { useEffect} from "react";
 import { useDispatch ,useSelector} from "react-redux";
 import { fetchData } from "../actions/featureAction";
+// import { fetchImage } from "../actions/imageAction";
 
 
 
@@ -10,6 +11,12 @@ import { fetchData } from "../actions/featureAction";
 const FeatureOne= (props) => {
     const {head,id} = props;
     const dispatch = useDispatch();
+    const data = useSelector((state) => state.data);
+  
+    // useEffect(() => {
+    //   dispatch(fetchImage());
+    // }, []);
+
 
 
     useEffect(() => {

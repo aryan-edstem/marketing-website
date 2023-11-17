@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Success from './pages/Succes';
+import Products from './components/Products'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="2" element={<FeatureOne head="Reduce your electricity bills" id="2"/>} />
         <Route path="3" element={<FeatureOne head="Reduce your electricity bills" id="3"/>} />
         <Route path='Contact' element={<ContactPage />} />
+        <Route path='products' element={<Products />} />
         <Route path='success' element={<Success />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
