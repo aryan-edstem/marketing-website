@@ -27,14 +27,14 @@ const Navbar = () => {
                         <h1 className="text-slate-100">Home</h1>
                     </Link>
                     <Link to="products">
-                        <h1 className="text-slate-100">products</h1>
+                        <h1 className="text-slate-100">Products</h1>
                     </Link>
-                    <Menu.Button onClick={() => setActiveMenu(activeMenu === 'products' ? null : 'products')} className="text-slate-100">
-                    Products
-                    </Menu.Button>
                     <Menu.Button onClick={() => setActiveMenu(activeMenu === 'services' ? null : 'services')} className="text-slate-100">
                     Services
                     </Menu.Button>
+                    <Link to="wishlist">
+                        <h1 className="text-slate-100">Wishlist</h1>
+                    </Link>
                     <Link to="/contact">
                         <h1 className="text-slate-100 ">Request Quotation</h1>
                     </Link>

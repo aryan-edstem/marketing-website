@@ -1,38 +1,23 @@
 import React, { useState } from "react";
 import productsData from "./ProductsData";
+import { useSelector, useDispatch } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "../actions/wishlistActions";
+import Wishlist from "./wishList";
 
 const Features = () => {
   const [products, setProducts] = useState(productsData);
-  const [wishlist, setWishlist] = useState([]);
   const [display,setDisplay] = useState(false)
+  const wishlist = useSelector((state) => state.wishlist);
+  const dispatch = useDispatch();
 
-  const handleWishlist = (index) => {
-    const updatedProducts = [...products];
-    const updatedWishlist = [...wishlist];
-
-    updatedProducts[index].wishList = !updatedProducts[index].wishList;
-    if (updatedProducts[index].wishList) {
-      updatedWishlist.push({
-        name: updatedProducts[index].name,
-        price: updatedProducts[index].rate,
-      });
+  const handleWishlist = (product) => {
+    if (wishlist.some((item) => item.name === product.name)) {
+      dispatch(removeFromWishlist(product));
     } else {
-      const productIndex = updatedWishlist.findIndex(
-        (item) => item.name === updatedProducts[index].name
-      );
-      if (productIndex !== -1) {
-        updatedWishlist.splice(productIndex, 1);
-      }
+        dispatch(addToWishlist({ ...product, price: product.rate }));
     }
-
-    setProducts(updatedProducts);
-    setWishlist(updatedWishlist);
   };
 
-  const handleDisplayWishList = () =>
-  {
-    setDisplay(true)
-  }
 
   return (
     <div className="flex-col mb-20 mx-16 mt-40">
@@ -51,28 +36,21 @@ const Features = () => {
               <p className="justify-center  mb-4 text-lg">{item.description}</p>
               <p className="mb-2">Price: {item.rate}</p>
               <button
-                onClick={() => handleWishlist(index)}
-                className={`text-base font-medium ${
-                  item.wishList ? "text-green-500" : "text-blue-500"
-                }`}
-              >
-                {item.wishList ? "Remove from Wishlist" : "Add to Wishlist"}
-              </button>
+              onClick={() => handleWishlist(item)}
+              className={`text-base font-medium ${
+                wishlist.some((w) => w.name === item.name)
+                  ? "text-green-500"
+                  : "text-blue-500"
+              }`}
+            >
+              {wishlist.some((w) => w.name === item.name)
+                ? "Remove from Wishlist"
+                : "Add to Wishlist"}
+            </button>
             </div>
           );
         })}
       </div>
-      <button onClick={handleDisplayWishList} className="mt-12 mx-auto bg-green-500 rounded-lg p-5 z-10 text-slate-50 text-white font-bold">Wishlist</button>
-      <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Wishlist:</h2>
-        {display && wishlist.map((item, index) => (
-          <div key={index}>
-            <p>{item.name}</p>
-            <p>Price: {item.price}</p>
-          </div>
-        ))}
-      </div>
-
     </div>
   );
 };

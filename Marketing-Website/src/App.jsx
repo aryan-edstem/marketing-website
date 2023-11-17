@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Success from './pages/Succes';
 import Products from './components/Products'
+import Wishlist from './components/wishList';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="3" element={<FeatureOne head="Reduce your electricity bills" id="3"/>} />
         <Route path='Contact' element={<ContactPage />} />
         <Route path='products' element={<Products />} />
+        <Route path='wishlist' element={<Wishlist />} />
         <Route path='success' element={<Success />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
