@@ -28,14 +28,14 @@ const FeatureOne= (props) => {
     if(feature){
         return(
         <div className="bg-gray-100 p-5 h-screen">
-            <div className="text-center flex flex-col justify-center border border-black border-8 rounded-3xl gap-20 w-[600px] mx-auto my-20 p-16">
-                <p className="text-xl" > {feature.name}</p>
-                <p className="w-[400px] mx-auto">{feature.detailedDescription}</p>
+            <div className="text-center flex flex-col justify-center shadow-2xl rounded-3xl gap-20 w-[600px] mx-auto my-20 p-16">
+                <p className="text-green-500 font-roboto text-3xl font-bold leading-normal" > {feature.name}</p>
+                <p className="w-[400px] mx-auto font-roboto text-xl font-normal leading-normal">{feature.detailedDescription}</p>
                 <Link to="/Contact">
                     <button  className=" bg-green-800 rounded p-5 z-10 text-slate-50">Get Quotation</button>
                 </Link>
                 <Link to="/">
-                    <button  className="ml-12 text-center bg-green-800 w-20 rounded p-5 text-slate-50">Back</button>
+                    <button  className="mx-auto text-center bg-green-800 w-20 rounded p-5 text-slate-50">Back</button>
                 </Link>
             </div>
         </div>

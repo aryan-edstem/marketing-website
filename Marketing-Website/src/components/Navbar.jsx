@@ -39,7 +39,7 @@ const Navbar = () => {
                         <h1 className="text-slate-100 ">Request Quotation</h1>
                     </Link>
                     <div>
-                        <h1 className="text-slate-100">Hi, {username}</h1>
+                        <h1 className="text-yellow-500 font-bold"> {username}</h1>
                     </div>
                 </div>
               </div>
