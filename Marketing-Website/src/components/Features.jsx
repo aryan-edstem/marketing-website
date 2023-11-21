@@ -4,13 +4,12 @@ import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Features  = () => {
+const Features  = (props) => {
     const [page,setPage]=useState('');
     const handlePage = (e) =>{
         setPage(e.target.value);
     }
-    const [feature, setFeature] = useState()
-    
+    const {features} = props
     const navigate = useNavigate();
     {if(page==1){
         navigate("/1")
@@ -26,28 +25,28 @@ const Features  = () => {
 
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get('http://localhost:8080/description/short');
-            console.log('Data:', response.data);
-            setFeature(response.data)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-        fetchData();
-      }, []); 
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       try {
+    //         const response = await axios.get('http://localhost:8080/description/short');
+    //         console.log('Data:', response.data);
+    //         setFeature(response.data)
+    //       } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //       }
+    //     };
+    //     fetchData();
+    //   }, []); 
     
 
     return(
         <div className="flex-col mb-20 mx-16 mt-40">
             <div className="flex text-center flex-col font-roboto  mb-14">
-                <p className="text-teal-600 text-base font-bold leading-28 uppercase">Advantages</p>
-                <p className="text-gray-800 font-inter text-4xl font-semibold leading-52 tracking-tight">Benefits of Going Solar</p>
+                <p className="text-teal-600 text-base font-bold leading-28 uppercase">{features[12].shortDescription}</p>
+                <p className="text-gray-800 font-inter text-4xl font-semibold leading-52 tracking-tight">{features[11].shortDescription}</p>
             </div>
             <div className="flex justify-around">
-                {feature && feature.map((item,index)=>{
+                {features && features.map((item,index)=>{
                 if(item.name){
                 return(
                     <div className="flex-col gap-x-8 w-[341px] text-center px-4 ">

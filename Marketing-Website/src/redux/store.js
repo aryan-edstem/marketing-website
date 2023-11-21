@@ -5,7 +5,7 @@ import userReducer from '../reducers/userReducer';
 import dataReducer from '../reducers/featureReducer';
 import loginReducer from '../reducers/loginReducer';
 import wishlistReducer from '../reducers/wishlistReducer';
-// import imageReducer from '../reducers/imageReducer';
+import imageReducer from '../reducers/imageReducer';
 
 
 const rootReducer = combineReducers({
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   data: dataReducer,
   login: loginReducer,
-  // image: imageReducer
+  image: imageReducer,
   wishlist:wishlistReducer
 });
 

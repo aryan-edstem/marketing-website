@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import Success from './pages/Succes';
 import Products from './components/Products'
 import Wishlist from './components/wishList';
+import LoginPage from './pages/LoginPage';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='products' element={<Products />} />
         <Route path='wishlist' element={<Wishlist />} />
         <Route path='success' element={<Success />} />
+        <Route path='login' element={<LoginPage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
       <Footer />

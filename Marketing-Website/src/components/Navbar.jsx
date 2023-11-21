@@ -12,6 +12,7 @@ function classNames(...classes) {
 
 const Navbar = () => {
     const username = useSelector((state) => state.user.username);
+    const [isloggedin,setIsloggedin]= useState("Logout")
     const [activeMenu, setActiveMenu] = useState(null);
 
     return(
@@ -40,6 +41,9 @@ const Navbar = () => {
                     </Link>
                     <div>
                         <h1 className="text-yellow-500 font-bold"> {username}</h1>
+                    </div>
+                    <div>
+                        <button className="text-slate-100" >{isloggedin}</button>
                     </div>
                 </div>
               </div>
