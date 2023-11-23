@@ -6,10 +6,14 @@ import Features from "../components/features";
 import ChooseUs from "../components/ChooseUs";
 import { useState,useEffect } from "react";
 import axios from "axios";
+import { useDispatch , useSelector} from "react-redux";
+import { fetchImage } from "../actions/imageAction";
 
 const LandingPage = () => {
     const [feature, setFeature] = useState();
-    const [image, setImage] = useState()
+    const dispatch = useDispatch();
+    const images =useSelector((state) => state.image);
+
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -20,19 +24,10 @@ const LandingPage = () => {
             console.error('Error fetching data:', error);
           }
         };
-        const fetchImage = async () => {
-            try {
-              const response = await axios.get('http://localhost:8080/image');
-              console.log('Data:', response.data);
-              setImage(response.data)
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
         fetchData();
-        fetchImage();
+        dispatch(fetchImage());
       }, []); 
-    if(feature && image){
+    if(feature && images){
         return(
         <>
         <div className="relative z-10 ">
@@ -45,11 +40,11 @@ const LandingPage = () => {
                         <button className="rounded-[5.145px] bg-blue-500 shadow-md w-[234px] h-[71px] p-[5.145px] text-white font-bold">Get A free quote</button>
                     </Link>
                 </div>
-                <img src={image[0].imageUrl} className="w-[600px] h-[550px] mx-auto z-0 mt-16 mb-16 rounded-3xl" />
+                <img src={images.data[0].imageUrl} className="w-[600px] h-[550px] mx-auto z-20 overflow-hidden mt-16 mb-16 rounded-3xl" />
             </div>
-            <Gallery images={image} />
+            <Gallery />
             <Features features={feature}/>
-            <ChooseUs features={feature} images={image}/>
+            <ChooseUs features={feature}/>
             {/* <Link to="/Sign-up">
                     <button  className="absolute  -bottom-40 right-[800px] bg-green-500 rounded-lg p-5 z-10 text-slate-50 text-white font-bold">Sign Up</button>
             </Link> */}

@@ -2,7 +2,7 @@ import React from "react";
 import featureicon from "../assets/FeatureIcon.svg"
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 const Features  = (props) => {
     const [page,setPage]=useState('');
@@ -24,20 +24,6 @@ const Features  = (props) => {
     }
 
     }
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const response = await axios.get('http://localhost:8080/description/short');
-    //         console.log('Data:', response.data);
-    //         setFeature(response.data)
-    //       } catch (error) {
-    //         console.error('Error fetching data:', error);
-    //       }
-    //     };
-    //     fetchData();
-    //   }, []); 
-    
 
     return(
         <div className="flex-col mb-20 mx-16 mt-40">

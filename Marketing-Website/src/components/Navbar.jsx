@@ -12,12 +12,12 @@ function classNames(...classes) {
 
 const Navbar = () => {
     const username = useSelector((state) => state.user.username);
-    const [isloggedin,setIsloggedin]= useState("Logout")
     const [activeMenu, setActiveMenu] = useState(null);
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     return(
         <div>
-            <div className="h-20 bg-gray-800 flex justify-between content-center  p-5">
+            <div className="h-20 bg-gray-800 flex justify-between   p-5">
             <Link to="/">
                     <img src={Logo} className="h-10 ml-10"/>
                 </Link>
@@ -42,12 +42,12 @@ const Navbar = () => {
                     <div>
                         <h1 className="text-yellow-500 font-bold"> {username}</h1>
                     </div>
-                    <div>
-                        <button className="text-slate-100" >{isloggedin}</button>
-                    </div>
+                    {/* <Link to="Sign-up">
+                        <button className="text-slate-100" >{(isAuthenticated===true?"Logout":"Login")}</button>
+                    </Link> */}
                 </div>
               </div>
-        
+{/*         
               <Transition
                 as={Fragment}
                 show={activeMenu === 'products'}
@@ -58,7 +58,7 @@ const Navbar = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute left-2 z-40 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-160 z-40 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="py-1">
                     <Menu.Item>
                       {({ active }) => (
@@ -144,7 +144,7 @@ const Navbar = () => {
                     </Menu.Item>
                   </div>
                 </Menu.Items>
-              </Transition>
+              </Transition> */}
               <Transition
             as={Fragment}
             show={activeMenu === 'services'}
@@ -155,7 +155,7 @@ const Navbar = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-80 z-40 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="relative z-40 mt-2 w-56 ml-64 divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (

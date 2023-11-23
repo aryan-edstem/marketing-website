@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../actions/wishlistActions";
-import SignUpPage from "../pages/SignUpPage";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
@@ -13,7 +12,7 @@ const Features = () => {
   const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false)
+  const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +32,10 @@ const Features = () => {
     if (wishlist.some((item) => item.name === product.name)) {
       dispatch(removeFromWishlist(product));
     } else {
-        if(wishlist==''){
+        if(!isAuthenticated){
             navigate("/Sign-up");
           }
-        dispatch(addToWishlist({ ...product, price: product.rate,image: product.url }));
+        dispatch(addToWishlist({ ...product, price: product.price,image: product.url }));
     }
   };
 

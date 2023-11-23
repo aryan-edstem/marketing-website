@@ -9,7 +9,7 @@ import { fetchData } from "../actions/featureAction";
 
 
 const FeatureOne= (props) => {
-    const {head,id} = props;
+    const {id} = props;
     const dispatch = useDispatch();
     const data = useSelector((state) => state.data);
   
