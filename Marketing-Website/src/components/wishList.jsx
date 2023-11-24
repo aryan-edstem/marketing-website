@@ -9,7 +9,7 @@ const Wishlist = () => {
     console.log(wishlist);
     if(isAuthenticated){
         return(        
-        <div className="m-16 p-32">
+        <div className="m-8 p-8">
         <p className="text-blue-500 font-roboto text-5xl font-bold leading-normal">Your Wishlist</p>
         {wishlist.map((item, index) => (
             <div key={index} className="w-[750px] rounded-lg flex flex-row p-10 justify-around content-center m-16 shadow-2xl text-blue font-bold ml-32">

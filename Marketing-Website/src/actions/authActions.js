@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const signUp = (formData, navigate) => async (dispatch) => {
   try {
-    const response = await axios.post('http://localhost:8080/signup', formData);
+    const apiUrl = import.meta.env.VITE_API_BASE_URL
+    const response = await axios.post(`${apiUrl}/signup`, formData);
     dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data });
     navigate('/login');
   } catch (error) {
