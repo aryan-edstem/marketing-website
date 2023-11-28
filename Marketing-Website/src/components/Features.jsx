@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
-const Features  = (props) => {
+const Features  = () => {
     const [page,setPage]=useState('');
-    const {features} = props;
     const handlePage = (e) =>{
         setPage(e.target.value);
     }
-    // const features =useSelector((state) => state.text.data);
+    const features =useSelector((state) => state.text.data);
     const navigate = useNavigate();
     {if(page==1){
         navigate("/1")

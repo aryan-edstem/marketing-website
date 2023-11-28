@@ -1,30 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../actions/wishlistActions";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
 
 
 
 const Features = () => {
-  const [products, setProducts] = useState();
+  const products=useSelector((state)=>state.products.data)
   const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
+  console.log(products);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/products');
-        setProducts(response.data)
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, []); 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:8080/products');
+  //       setProducts(response.data)
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []); 
 
 
   const handleWishlist = (product) => {

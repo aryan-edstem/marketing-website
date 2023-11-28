@@ -6,22 +6,10 @@ import Features from "../components/features";
 import ChooseUs from "../components/ChooseUs";;
 import {useSelector} from "react-redux";
 
+
 const LandingPage = () => {
     const features =useSelector((state) => state.text.data);
     const images =useSelector((state) => state.image.data);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const response = await axios.get('http://localhost:8080/description/short');
-    //         setFeatures(response.data)
-    //       } catch (error) {
-    //         console.error('Error fetching data:', error);
-    //       }
-    //     };
-    //     fetchData();
-    //   }, []); 
-
     if(features && images){
         return(
         <>
@@ -38,8 +26,8 @@ const LandingPage = () => {
                 <img src={images[0].imageUrl} className="w-[600px] h-[550px] mx-auto z-20 overflow-hidden mt-16 mb-16 rounded-3xl" />
             </div>
             <Gallery />
-            <Features features={features}/>
-            <ChooseUs features={features}/>
+            <Features/>
+            <ChooseUs/>
         </div>
         <div>
 

@@ -14,12 +14,14 @@ import LoginPage from './pages/LoginPage';
 import { useDispatch} from "react-redux";
 import { fetchImage } from "./actions/imageAction";
 import { fetchText } from "./actions/textActions";
+import { fetchProduct } from './actions/productsAction';
 
 
-const App = () => {
-  const dispatch = useDispatch();
-  dispatch(fetchImage());
+  const App = () => {
+  const dispatch=useDispatch();
   dispatch(fetchText());
+  dispatch(fetchImage());
+  dispatch(fetchProduct());
   return (
     <Router>
       <Navbar/>

@@ -7,6 +7,7 @@ import loginReducer from '../reducers/loginReducer';
 import wishlistReducer from '../reducers/wishlistReducer';
 import imageReducer from '../reducers/imageReducer';
 import textReducer from '../reducers/textReducer';
+import productReducer from '../reducers/productReducer';
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   login: loginReducer,
   image: imageReducer,
   wishlist:wishlistReducer,
-  text:textReducer
+  text:textReducer,
+  products:productReducer
 });
 
 export default rootReducer;
