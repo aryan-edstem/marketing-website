@@ -11,9 +11,15 @@ import Success from './pages/Succes';
 import Products from './components/Products'
 import Wishlist from './components/wishList';
 import LoginPage from './pages/LoginPage';
+import { useDispatch} from "react-redux";
+import { fetchImage } from "./actions/imageAction";
+import { fetchText } from "./actions/textActions";
 
 
 const App = () => {
+  const dispatch = useDispatch();
+  dispatch(fetchImage());
+  dispatch(fetchText());
   return (
     <Router>
       <Navbar/>
@@ -21,9 +27,9 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="Sign-up" element={<SignUpPage />} />
         <Route path="Feature-one" element={<FeatureOne />} />
-        <Route path="1" element={<FeatureOne head="Reduce your electricity bills" id="1"/>} />
-        <Route path="2" element={<FeatureOne head="Reduce your electricity bills" id="2"/>} />
-        <Route path="3" element={<FeatureOne head="Reduce your electricity bills" id="3"/>} />
+        <Route path="1" element={<FeatureOne id="1"/>} />
+        <Route path="2" element={<FeatureOne id="2"/>} />
+        <Route path="3" element={<FeatureOne id="3"/>} />
         <Route path='Contact' element={<ContactPage />} />
         <Route path='products' element={<Products />} />
         <Route path='wishlist' element={<Wishlist />} />

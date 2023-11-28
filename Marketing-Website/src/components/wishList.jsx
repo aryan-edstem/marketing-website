@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const Wishlist = () => {
     const wishlist = useSelector((state) => state.wishlist);
     const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
-    console.log(wishlist);
     if(isAuthenticated){
         return(        
         <div className="m-8 p-8">

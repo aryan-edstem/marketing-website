@@ -2,14 +2,16 @@ import React from "react";
 import featureicon from "../assets/FeatureIcon.svg"
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Features  = (props) => {
     const [page,setPage]=useState('');
+    const {features} = props;
     const handlePage = (e) =>{
         setPage(e.target.value);
     }
-    const {features} = props
+    // const features =useSelector((state) => state.text.data);
     const navigate = useNavigate();
     {if(page==1){
         navigate("/1")
@@ -35,7 +37,7 @@ const Features  = (props) => {
                 {features && features.map((item,index)=>{
                 if(item.name){
                 return(
-                    <div className="flex-col gap-x-8 w-[341px] text-center px-4 ">
+                    <div className="flex-col gap-x-8 w-[341px] text-center px-4 " key={index}>
                         <img src={featureicon} className="mb-8 flex mx-auto"/>
                         <p className=" text-blue-500 justify-center text-2xl font-medium leading-normal mb-4">{item.name}</p>
                         <p className="justify-center h-20 mb-4 text-lg">{item.shortDescription}</p>

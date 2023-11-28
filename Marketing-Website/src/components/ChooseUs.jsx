@@ -1,13 +1,12 @@
 import React from "react";
 import tick from "../assets/tick.svg";
-import { useDispatch , useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 
 const ChooseUs  = (props) => {
-    const {features}=props;
-    console.log(features)
-    const dispatch = useDispatch();
     const images =useSelector((state) => state.image);
+    const {features}= props;
+    // const features =useSelector((state) => state.text.data);
     if(features){
     return (
         <div className="flex justify-center gap-32">

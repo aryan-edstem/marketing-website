@@ -1,9 +1,9 @@
 import axios from 'axios';
-import baseUrl from '../components/BaseUrl';
 export const createContact = (contactData,navigate) => async (dispatch) => {
   try {
-    const response = await axios.post(`${baseUrl}/contact`, contactData);
-    await axios.post(`${baseUrl}/email`, contactData)
+    const apiUrl = import.meta.env.VITE_API_BASE_URL
+    const response = await axios.post(`${apiUrl}/contact`, contactData);
+    await axios.post(`${apiUrl}/email`, contactData)
     dispatch({ type: 'CREATE_CONTACT_SUCCESS', payload: response.data });
     navigate('/success');
   } catch (error) {

@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from "react";
+import React,{ useState} from "react";
 import Logo from '../assets/logo.svg';
 import {Link} from 'react-router-dom'
 import { useSelector } from "react-redux";
@@ -42,110 +42,10 @@ const Navbar = () => {
                     <div>
                         <h1 className="text-yellow-500 font-bold"> {username}</h1>
                     </div>
-                    {/* <Link to="Sign-up">
-                        <button className="text-slate-100" >{(isAuthenticated===true?"Logout":"Login")}</button>
-                    </Link> */}
                 </div>
               </div>
-{/*         
-              <Transition
-                as={Fragment}
-                show={activeMenu === 'products'}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-160 z-40 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="/success"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Solar Panels
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Solar Water Heater
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </div>
-                  <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          DC Motor Pump
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Solar Storage Battery
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </div>
-                  <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Share
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Add to favorites
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition> */}
-              <Transition
+
+            <Transition
             as={Fragment}
             show={activeMenu === 'services'}
             enter="transition ease-out duration-100"

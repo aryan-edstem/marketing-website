@@ -18,7 +18,6 @@ const Features = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:8080/products');
-        console.log('Data:', response.data);
         setProducts(response.data)
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -35,7 +34,9 @@ const Features = () => {
         if(!isAuthenticated){
             navigate("/Sign-up");
           }
-        dispatch(addToWishlist({ ...product, price: product.price,image: product.url }));
+        else{
+          dispatch(addToWishlist({ ...product, price: product.price,image: product.url }));
+        }
     }
   };
 
