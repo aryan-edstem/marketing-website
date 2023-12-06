@@ -36,7 +36,7 @@ import productsData from './productsData'
 
 const ProductsTable = () => {
     const columns = [
-        { id: 'id', name: 'Id' },
+        // { id: 'no', name: 'Id' },
         { id: 'name', name: 'Name' },
         { id: 'description', name: 'Description' },
         { id: 'price', name: 'Price' }
@@ -70,6 +70,11 @@ const ProductsTable = () => {
           return cellValue.toString().toLowerCase().includes(searchTerm.toLowerCase());
         });
       });
+    
+      const rowsWithSerialNumbers = filteredRows.map((row, index) => {
+        return { ...row, serialNumber: index + 1 };
+      });  
+
 
     return (
         <div className="text-center h-screen">
@@ -86,22 +91,24 @@ const ProductsTable = () => {
                     <Table stickyHeader>
                         <TableHead>
                             <TableRow>
+                            <TableCell  style={{ backgroundColor: 'black', color: 'white' }}>Sl.No</TableCell>
                                 {columns.map((column) => (
                                     <TableCell style={{ backgroundColor: 'black', color: 'white' }} key={column.id}>{column.name}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                        {filteredRows && filteredRows
+              {rowsWithSerialNumbers
                 .slice(page * rowperpage, page * rowperpage + rowperpage)
                 .map((row, i) => (
                   <TableRow key={i}>
+                    <TableCell>{row.serialNumber}</TableCell>
                     {columns.map((column) => (
                       <TableCell key={column.id}>{row[column.id]}</TableCell>
                     ))}
                   </TableRow>
                 ))}
-                        </TableBody>
+            </TableBody>
                     </Table>
                 </TableContainer>
                 <TablePagination
