@@ -1,10 +1,11 @@
   import React, { useState } from 'react';
   import { useDispatch } from 'react-redux';
-  import { signUp } from '../actions/authActions';
+  import { signUp } from '../actions/authSlice';
   import {useNavigate} from "react-router-dom";
-  import { storeUsername } from '../actions/userAction';
+  // import { storeUsername } from '../actions/userAction';
   import LoginPage from './LoginPage';
   
+    //ADD Snackar
   
   const SignUpPage = () => {
     const dispatch = useDispatch();

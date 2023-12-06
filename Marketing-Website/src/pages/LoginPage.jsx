@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../actions/authActions';
 import {useNavigate} from "react-router-dom";
-
-import { login } from '../actions/loginAction';
+import { login } from '../actions/authSlice';
 // import { storeUsername } from '../actions/userAction';
 
 

@@ -2,16 +2,20 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../actions/wishlistActions";
 import { useNavigate } from "react-router-dom";
+import { fetchProduct } from "../actions/productSlice";
 
 
 
-const Features = () => {
-  const products=useSelector((state)=>state.products.data)
+const Products = () => {
+
   const wishlist = useSelector((state) => state.wishlist);
+  console.log(wishlist);
   const dispatch = useDispatch();
+  dispatch(fetchProduct());
+  const products=useSelector((state)=>state.product)
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
-  console.log(products);
+  // const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
+
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -30,16 +34,16 @@ const Features = () => {
     if (wishlist.some((item) => item.name === product.name)) {
       dispatch(removeFromWishlist(product));
     } else {
-        if(!isAuthenticated){
-            navigate("/Sign-up");
-          }
-        else{
+        // if(!isAuthenticated){
+        //     navigate("/Sign-up");
+        //   }
+        // else{
           dispatch(addToWishlist({ ...product, price: product.price,image: product.url }));
-        }
+       // }
     }
   };
 
-  if(products){
+  if(products.data!=null){
   return (
     <div className="flex-col mb-20 mx-8 mt-20">
       <div className="flex text-center flex-col font-roboto  mb-14">
@@ -48,7 +52,7 @@ const Features = () => {
         </p>
       </div>
       <div className="flex flex-col gap-y-8 ">
-        {products.map((item, index) => {
+        {products.data.map((item) => {
           return (
             <div className="flex w-auto text-center ml-4 border-2 p-8 justify-between gap-x-8 bg-slate-100 rounded-3xl" key={item.id}>
             <img src={item.imageUrl} className="w-24 h-24 my-auto" />
@@ -78,5 +82,5 @@ const Features = () => {
     }
 };
 
-export default Features;
+export default Products;
 

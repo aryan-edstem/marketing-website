@@ -12,16 +12,15 @@ import Products from './components/Products'
 import Wishlist from './components/wishList';
 import LoginPage from './pages/LoginPage';
 import { useDispatch} from "react-redux";
-import { fetchImage } from "./actions/imageAction";
-import { fetchText } from "./actions/textActions";
-import { fetchProduct } from './actions/productsAction';
+import { fetchFeatures, fetchImage } from './actions/descriptionSlice';
+import ProductsTable from './components/ProductsTable';
 
 
   const App = () => {
   const dispatch=useDispatch();
-  dispatch(fetchText());
+  dispatch(fetchFeatures());
   dispatch(fetchImage());
-  dispatch(fetchProduct());
+
   return (
     <Router>
       <Navbar/>
@@ -37,6 +36,7 @@ import { fetchProduct } from './actions/productsAction';
         <Route path='wishlist' element={<Wishlist />} />
         <Route path='success' element={<Success />} />
         <Route path='login' element={<LoginPage />} />
+        <Route path='table' element={<ProductsTable />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
       <Footer />

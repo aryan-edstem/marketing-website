@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createContact } from '../actions/contactActions';
+import { createContact } from '../actions/contactSlice'
 import { useNavigate } from 'react-router-dom';
 
 

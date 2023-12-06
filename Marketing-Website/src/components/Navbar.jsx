@@ -11,7 +11,7 @@ function classNames(...classes) {
 
 
 const Navbar = () => {
-    const username = useSelector((state) => state.user.username);
+    // const username = useSelector((state) => state.user.username);
     const [activeMenu, setActiveMenu] = useState(null);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -30,6 +30,9 @@ const Navbar = () => {
                     <Link to="products">
                         <h1 className="text-slate-100">Products</h1>
                     </Link>
+                    <Link to="table">
+                        <h1 className="text-slate-100">Productstable</h1>
+                    </Link>
                     <Menu.Button onClick={() => setActiveMenu(activeMenu === 'services' ? null : 'services')} className="text-slate-100">
                     Services
                     </Menu.Button>
@@ -39,9 +42,9 @@ const Navbar = () => {
                     <Link to="/contact">
                         <h1 className="text-slate-100 ">Request Quotation</h1>
                     </Link>
-                    <div>
+                    {/* <div>
                         <h1 className="text-yellow-500 font-bold"> {username}</h1>
-                    </div>
+                    </div> */}
                 </div>
               </div>
 
