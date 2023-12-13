@@ -9,6 +9,7 @@ import {useSelector} from "react-redux";
 
 const LandingPage = () => {
     const features =useSelector((state) => state.description);
+    console.log(features);
     if(features.featureData!=null && features.imageData!=null){
         return(
         <>

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 export const signUp = createAsyncThunk('auth/signup', async (formData) => {
   try {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
@@ -16,7 +17,6 @@ export const login = createAsyncThunk('auth/login', async (formData, { dispatch 
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const response = await axios.post(`${apiUrl}/login`, formData);
     dispatch(authSlice.actions.loginSuccess(response.data));
-    dispatch(authSlice.actions.setAuthenticated(true));
   } catch (error) {
     dispatch(authSlice.actions.loginFailure(error));
   }
@@ -45,14 +45,7 @@ const authSlice = createSlice({
       state.authenticated = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(signUp.fulfilled, (state, action) => {
-      // handle signUp success if needed
-    });
-    builder.addCase(signUp.rejected, (state, action) => {
-      // handle signUp failure if needed
-    });
-  },
+
 });
 
 export const { loginSuccess, loginFailure, setAuthenticated } = authSlice.actions;

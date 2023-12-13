@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from "react-router-dom";
 import { login } from '../actions/authSlice';
-// import { storeUsername } from '../actions/userAction';
+
 
 
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const setauthenticated = useSelector((state)=>state.auth.authenticated)
   const [formData, setFormData] = useState({
     password: '',
     email: '',
@@ -41,10 +42,14 @@ const LoginPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      dispatch(login(formData, navigate));
+      dispatch(login(formData));
       // dispatch(storeUsername(formData.username));
     }
   };
+
+  if(setauthenticated){
+    navigate('/products')
+  }
 
   return(
       <div className="bg-gray-100 h-screen p-10 ">

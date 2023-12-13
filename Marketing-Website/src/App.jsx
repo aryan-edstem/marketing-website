@@ -13,7 +13,7 @@ import Wishlist from './components/wishList';
 import LoginPage from './pages/LoginPage';
 import { useDispatch} from "react-redux";
 import { fetchFeatures, fetchImage } from './actions/descriptionSlice';
-import ProductsTable from './components/ProductsTable';
+
 
 
   const App = () => {
@@ -36,7 +36,6 @@ import ProductsTable from './components/ProductsTable';
         <Route path='wishlist' element={<Wishlist />} />
         <Route path='success' element={<Success />} />
         <Route path='login' element={<LoginPage />} />
-        <Route path='table' element={<ProductsTable />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
       <Footer />

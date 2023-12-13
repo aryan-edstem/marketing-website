@@ -6,6 +6,7 @@ export const createContact = createAsyncThunk('contact/create', async (contactDa
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const response = await axios.post(`${apiUrl}/contact`, contactData);
     await axios.post(`${apiUrl}/email`, contactData);
+    console.log(contactData);
     return response.data;
   } catch (error) {
     throw error;

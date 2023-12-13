@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { React } from "react";
 import { useSelector } from "react-redux";
 
-const Gallery = (props) => {
-  const { features } = props;
-  // const images =useSelector((state) => state.image);
+const Gallery = () => {
+  const features =useSelector((state) => state.description);
   if (features) {
     return (
       <div className="relative">
@@ -13,7 +12,7 @@ const Gallery = (props) => {
           className="w-[1000px] h-[1000px] mx-auto z-0 my-16 rounded-3xl opacity-75 relative"
         />
         <h1 className="absolute top-[200px] right-[600px] text-center font-roboto text-6xl font-medium leading-[72.648px] ">
-          Residential Solar{" "}
+          Residential Solar
         </h1>
         <Link to="/Contact">
           <button className="absolute bottom-40 right-[750px] bg-green-500 rounded-lg p-5 z-10 text-white font-bold ">

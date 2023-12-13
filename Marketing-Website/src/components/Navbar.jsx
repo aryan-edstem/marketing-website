@@ -1,9 +1,10 @@
 import React,{ useState} from "react";
 import Logo from '../assets/logo.svg';
 import {Link} from 'react-router-dom'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import { fetchProduct } from "../actions/productSlice";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,7 +12,8 @@ function classNames(...classes) {
 
 
 const Navbar = () => {
-    // const username = useSelector((state) => state.user.username);
+    const dispatch = useDispatch();
+    dispatch(fetchProduct());
     const [activeMenu, setActiveMenu] = useState(null);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -30,9 +32,9 @@ const Navbar = () => {
                     <Link to="products">
                         <h1 className="text-slate-100">Products</h1>
                     </Link>
-                    <Link to="table">
+                    {/* <Link to="table">
                         <h1 className="text-slate-100">Productstable</h1>
-                    </Link>
+                    </Link> */}
                     <Menu.Button onClick={() => setActiveMenu(activeMenu === 'services' ? null : 'services')} className="text-slate-100">
                     Services
                     </Menu.Button>
@@ -42,9 +44,6 @@ const Navbar = () => {
                     <Link to="/contact">
                         <h1 className="text-slate-100 ">Request Quotation</h1>
                     </Link>
-                    {/* <div>
-                        <h1 className="text-yellow-500 font-bold"> {username}</h1>
-                    </div> */}
                 </div>
               </div>
 

@@ -1,86 +1,98 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addToWishlist, removeFromWishlist } from "../actions/wishlistActions";
-import { useNavigate } from "react-router-dom";
-import { fetchProduct } from "../actions/productSlice";
-
-
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Products = () => {
-
-  const wishlist = useSelector((state) => state.wishlist);
-  console.log(wishlist);
-  const dispatch = useDispatch();
-  dispatch(fetchProduct());
-  const products=useSelector((state)=>state.product)
-  const navigate = useNavigate();
-  // const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:8080/products');
-  //       setProducts(response.data)
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []); 
-
-
-  const handleWishlist = (product) => {
-    if (wishlist.some((item) => item.name === product.name)) {
-      dispatch(removeFromWishlist(product));
-    } else {
-        // if(!isAuthenticated){
-        //     navigate("/Sign-up");
-        //   }
-        // else{
-          dispatch(addToWishlist({ ...product, price: product.price,image: product.url }));
-       // }
+    const columns = [
+        { id: 'name', name: 'Name' },
+        { id: 'description', name: 'Description' },
+        { id: 'price', name: 'Price' }
+    ]
+    const products=useSelector((state)=>state.product)
+    const handlechangepage = (event,newpage) => {
+        setPage(newpage)
     }
-  };
-
-  if(products.data!=null){
-  return (
-    <div className="flex-col mb-20 mx-8 mt-20">
-      <div className="flex text-center flex-col font-roboto  mb-14">
-        <p className="text-gray-800 font-inter text-4xl font-semibold leading-52 tracking-tight">
-          Available Products
-        </p>
-      </div>
-      <div className="flex flex-col gap-y-8 ">
-        {products.data.map((item) => {
-          return (
-            <div className="flex w-auto text-center ml-4 border-2 p-8 justify-between gap-x-8 bg-slate-100 rounded-3xl" key={item.id}>
-            <img src={item.imageUrl} className="w-24 h-24 my-auto" />
-              <p className="flex text-blue-500 justify-center text-2xl font-medium leading-normal my-auto">
-                {item.name}
-              </p>
-              <p className=" flex justify-center my-auto w-[750px] text-lg">{item.description}</p>
-              <p className="flex my-auto">Price: {item.price}</p>
-              <button
-              onClick={() => handleWishlist(item)}
-              className={`text-base font-medium ${
-                wishlist.some((w) => w.name === item.name)
-                  ? "text-green-500"
-                  : "text-blue-500"
-              }`}
-            >
-              {wishlist.some((w) => w.name === item.name)
-                ? "Remove from Wishlist"
-                : "Add to Wishlist"}
-            </button>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+    const handleRowsPerPage = (event) => {
+        SetRowperpage(+event.target.value)
+        setPage(0);
     }
-};
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+        setPage(0);
+      };
+
+    const [rows, setRow] = useState([]);
+    const [page, setPage] = useState(0);
+    const [rowperpage, SetRowperpage] = useState(5);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+            setRow(products.data);
+    }, [])
+
+    const filteredRows = rows.filter((row) => {
+        return columns.some((column) => {
+          const cellValue = row[column.id];
+          return cellValue.toString().toLowerCase().includes(searchTerm.toLowerCase());
+        });
+      });
+    
+      const rowsWithSerialNumbers = filteredRows.map((row, index) => {
+        return { ...row, serialNumber: index + 1 };
+      });  
+
+
+    return (
+        <div className="text-center h-screen">
+            {products.loading && <h1>Loading...</h1>}
+            <Paper className="width-[90%] mx-[5%]">
+            <TextField
+          label="Search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          style={{ margin: '10px' }}
+        />
+                <TableContainer className="h-[450px]">
+                    <Table stickyHeader>
+                        <TableHead>
+                            <TableRow>
+                            <TableCell  style={{ backgroundColor: 'black', color: 'white' }}>Sl.No</TableCell>
+                                {columns.map((column) => (
+                                    <TableCell style={{ backgroundColor: 'black', color: 'white' }} key={column.id}>{column.name}</TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+              {rowsWithSerialNumbers
+                .slice(page * rowperpage, page * rowperpage + rowperpage)
+                .map((row, i) => (
+                  <TableRow key={i}>
+                    <TableCell>{row.serialNumber}</TableCell>
+                    {columns.map((column) => (
+                      <TableCell key={column.id}>{row[column.id]}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+            </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPage={rowperpage}
+                    page={page}
+                    count={rows.length}
+                    component="div"
+                    onPageChange={handlechangepage}
+                    onRowsPerPageChange={handleRowsPerPage}
+
+                >
+
+                </TablePagination>
+            </Paper>
+
+        </div>
+    );
+}
 
 export default Products;
-

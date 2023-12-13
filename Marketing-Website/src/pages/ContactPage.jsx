@@ -48,7 +48,6 @@ const ContactPage = () => {
 
     if (Object.keys(newErrors).length === 0) {
       dispatch(createContact(contactData,navigate));
-      dispatch 
     }
   };
 
