@@ -26,7 +26,6 @@ const Products = () => {
 
     const handleSearchCall = () => {
       dispatch(fetchProduct(searchTerm));
-      setRow(products.data);
     };
 
     const [rows, setRow] = useState([]);
@@ -36,7 +35,7 @@ const Products = () => {
 
     useEffect(() => {
             setRow(products.data);
-    }, [])
+    }, [products])
 
 
     // const filteredRows = rows?.content?.filter((row) => {
