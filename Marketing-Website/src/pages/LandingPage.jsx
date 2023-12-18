@@ -9,11 +9,11 @@ import {useSelector} from "react-redux";
 
 const LandingPage = () => {
     const features =useSelector((state) => state.description);
-    console.log(features);
+    // console.log(features);
     if(features.featureData!=null && features.imageData!=null){
         return(
         <>
-        <div className="relative z-10 ">
+        {/* <div className="relative z-10 ">
             <img src={ellipse} className="absolute top-[200px] left-[20px] overflow-hidden z-0" />
             <div className="flex z-10">
                 <div className="flex flex-col mx-auto gap-6 item-center  text-black font-roboto place-content-center z-10 relative">
@@ -31,7 +31,8 @@ const LandingPage = () => {
         </div>
         <div>
 
-        </div>
+        </div> */}
+        <h1>Hello World</h1>
         </>
     )
     }

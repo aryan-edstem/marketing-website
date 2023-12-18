@@ -1,8 +1,10 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { fetchProduct } from "../actions/productSlice";
 
 const Products = () => {
+    const dispatch = useDispatch();
     const columns = [
         { id: 'name', name: 'Name' },
         { id: 'description', name: 'Description' },
@@ -22,6 +24,11 @@ const Products = () => {
         setPage(0);
       };
 
+    const handleSearchCall = () => {
+      dispatch(fetchProduct(searchTerm));
+      setRow(products.data);
+    };
+
     const [rows, setRow] = useState([]);
     const [page, setPage] = useState(0);
     const [rowperpage, SetRowperpage] = useState(5);
@@ -31,18 +38,18 @@ const Products = () => {
             setRow(products.data);
     }, [])
 
-    const filteredRows = rows.filter((row) => {
-        return columns.some((column) => {
-          const cellValue = row[column.id];
-          return cellValue.toString().toLowerCase().includes(searchTerm.toLowerCase());
-        });
-      });
+
+    // const filteredRows = rows?.content?.filter((row) => {
+    //     return columns.some((column) => {
+    //       const cellValue = row[column.id];
+    //       return cellValue.toString().toLowerCase().includes(searchTerm.toLowerCase());
+    //     });
+    //   });
     
-      const rowsWithSerialNumbers = filteredRows.map((row, index) => {
+      const rowsWithSerialNumbers = rows?.content?.map((row, index) => {
         return { ...row, serialNumber: index + 1 };
       });  
-
-
+  
     return (
         <div className="text-center h-screen">
             {products.loading && <h1>Loading...</h1>}
@@ -52,7 +59,7 @@ const Products = () => {
           value={searchTerm}
           onChange={handleSearchChange}
           style={{ margin: '10px' }}
-        />
+        /> <button style={{ backgroundColor: 'black', color: 'white' }} onClick={handleSearchCall}>Search</button>
                 <TableContainer className="h-[450px]">
                     <Table stickyHeader>
                         <TableHead>
@@ -64,8 +71,7 @@ const Products = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-              {rowsWithSerialNumbers
-                .slice(page * rowperpage, page * rowperpage + rowperpage)
+              {rowsWithSerialNumbers?.slice(page * rowperpage, page * rowperpage + rowperpage)
                 .map((row, i) => (
                   <TableRow key={i}>
                     <TableCell>{row.serialNumber}</TableCell>
@@ -81,13 +87,12 @@ const Products = () => {
                     rowsPerPageOptions={[5, 10, 25]}
                     rowsPerPage={rowperpage}
                     page={page}
-                    count={rows.length}
+                    count={rows.length?rows.length:5} // error
                     component="div"
                     onPageChange={handlechangepage}
                     onRowsPerPageChange={handleRowsPerPage}
 
                 >
-
                 </TablePagination>
             </Paper>
 

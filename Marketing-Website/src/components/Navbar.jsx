@@ -13,7 +13,8 @@ function classNames(...classes) {
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    dispatch(fetchProduct());
+    const searchTerm = "";
+    dispatch(fetchProduct(searchTerm));
     const [activeMenu, setActiveMenu] = useState(null);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 

@@ -17,9 +17,9 @@ import { fetchFeatures, fetchImage } from './actions/descriptionSlice';
 
 
   const App = () => {
-  const dispatch=useDispatch();
-  dispatch(fetchFeatures());
-  dispatch(fetchImage());
+  // const dispatch=useDispatch();
+  // dispatch(fetchFeatures());
+  // dispatch(fetchImage());
 
   return (
     <Router>
